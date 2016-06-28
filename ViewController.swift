@@ -43,5 +43,36 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return ViewControllerCell()
     }
     
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ViewControllerDataProvider().numberOfRows()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 66
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: String(ViewControllerCell),for: indexPath) as? ViewControllerCell {
+            cell.selectionStyle = .none
+            let term =  ViewControllerDataProvider().object(at: indexPath.row)
+            cell.configure(term: term)
+            return cell
+        }
+        return ViewControllerCell()
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: String(ViewControllerCell),for: indexPath) as? ViewControllerCell {
+            cell.selectionStyle = .none
+            let term =  ViewControllerDataProvider().object(at: indexPath.row)
+            cell.configure(term: term)
+            return cell
+        }
+        return ViewControllerCell()
+    }
     
 }
